@@ -5,14 +5,14 @@ metadata:
   name: <%= data['ingress-name'] %>
   namespace: <%= data['global-namespace'] %>
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: nginx<% if(data['ingress-use-ssl']) { %>
     certmanager.k8s.io/cluster-issuer: letsencrypt-prod-issuer
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-spec:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"<% } %>
+spec:<% if(data['ingress-use-ssl']) { %>
   tls:
   - secretName: <%= data['ingress-name'] %>
     hosts:<% for(const url of data['ingress-urls']) { %>
-    - <%= url -%><% } %>
+    - <%= url -%><% } %><% } %>
   rules:<% for(const url of data['ingress-urls']) { %>
   - host: <%= url %>
     http:
