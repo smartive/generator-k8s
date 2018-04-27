@@ -9,6 +9,17 @@
     "test:watch": "npm run clean && jest -c ./jest.json --watch",
     "semantic-release": "semantic-release"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smartive/generator-k8s.git"
+  },
+  "engines": {
+    "node": "^9.0.0",
+    "npm": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "yeoman-generator",
     "yeoman",
@@ -28,6 +39,7 @@
   "devDependencies": {
     "del-cli": "^1.1.0",
     "jest": "^22.4.3",
+    "semantic-release": "^15.1.7",
     "yeoman-test": "^1.7.0"
   }
 }
