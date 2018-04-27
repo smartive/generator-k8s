@@ -1,4 +1,3 @@
-
 module.exports = {
   templateName: 'resources/ingress.yml',
   prompts: [
