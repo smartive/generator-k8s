@@ -60,7 +60,7 @@ module.exports = {
         .filter(Boolean)
         .map((port) => {
           const mapping = {};
-          const split = port.split(':');
+          const split = port.trim().split(':');
           mapping.name = split[0];
           mapping.port = split[1];
           return mapping;
