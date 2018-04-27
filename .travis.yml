@@ -25,5 +25,5 @@ jobs:
       after_success:
         - npm i -g codecov
         - codecov
-    # - stage: deploy
-    #   script: npm run semantic-release
+    - stage: deploy
+      script: npm run semantic-release
