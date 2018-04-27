@@ -3,10 +3,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: <%= data['service-name'] %>
-  namespace: <%= data['global-namespace'] %>
+  namespace: <%= data['global-namespace'] %><% if(data['global-app-name'] || data['global-app-tier']) { %>
   labels:<% if(data['global-app-name']) { %>
     app: <%= data['global-app-name'] -%><% } %><% if(data['global-app-tier']) { %>
-    tier: <%= data['global-app-tier'] -%><% } %>
+    tier: <%= data['global-app-tier'] -%><% } %><% } %>
 spec:
   selector:
     name: <%= data['service-selector'] %><% if(data['global-app-name']) { %>
