@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "del-cli": "^1.1.0",
+    "fs-extra": "^5.0.0",
     "jest": "^22.4.3",
     "yeoman-test": "^1.7.0"
   }

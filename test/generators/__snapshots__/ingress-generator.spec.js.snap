@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resource Generator: Ingress should generate a host for a single url 1`] = `
+"# Ingress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: \${CI_PROJECT_PATH_SLUG}
+  namespace: \${NAMESPACE}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod-issuer
+    nginx.ingress.kubernetes.io/ssl-redirect: \\"true\\"
+spec:
+  tls:
+  - secretName: \${CI_PROJECT_PATH_SLUG}
+    hosts:
+    - smartive.ch
+  rules:
+  - host: smartive.ch
+    http:
+      paths:
+      - backend:
+          serviceName: \${CI_PROJECT_PATH_SLUG}
+          servicePort: 80
+"
+`;
+
+exports[`Resource Generator: Ingress should generate a host for multiple urls 1`] = `
+"# Ingress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: \${CI_PROJECT_PATH_SLUG}
+  namespace: \${NAMESPACE}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod-issuer
+    nginx.ingress.kubernetes.io/ssl-redirect: \\"true\\"
+spec:
+  tls:
+  - secretName: \${CI_PROJECT_PATH_SLUG}
+    hosts:
+    - smartive.ch
+    - www.smartive.ch
+  rules:
+  - host: smartive.ch
+    http:
+      paths:
+      - backend:
+          serviceName: \${CI_PROJECT_PATH_SLUG}
+          servicePort: 80
+  - host: www.smartive.ch
+    http:
+      paths:
+      - backend:
+          serviceName: \${CI_PROJECT_PATH_SLUG}
+          servicePort: 80
+"
+`;
+
+exports[`Resource Generator: Ingress should not generate a host for an empty url 1`] = `
+"# Ingress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: \${CI_PROJECT_PATH_SLUG}
+  namespace: \${NAMESPACE}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod-issuer
+    nginx.ingress.kubernetes.io/ssl-redirect: \\"true\\"
+spec:
+  tls:
+  - secretName: \${CI_PROJECT_PATH_SLUG}
+    hosts:
+    - smartive.ch
+    - www.smartive.ch
+  rules:
+  - host: smartive.ch
+    http:
+      paths:
+      - backend:
+          serviceName: \${CI_PROJECT_PATH_SLUG}
+          servicePort: 80
+  - host: www.smartive.ch
+    http:
+      paths:
+      - backend:
+          serviceName: \${CI_PROJECT_PATH_SLUG}
+          servicePort: 80
+"
+`;

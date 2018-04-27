@@ -13,12 +13,14 @@ module.exports = {
       name: 'global-namespace',
       message: 'The name of the namespace',
       default: '${NAMESPACE}',
+      validate: input => !!!input ? 'Please enter a value' : true,
     },
     {
       type: 'input',
       name: 'ingress-name',
       message: 'The name of the ingress',
       default: '${CI_PROJECT_PATH_SLUG}',
+      validate: input => !!!input ? 'Please enter a value' : true,
     },
     {
       type: 'input',
@@ -29,7 +31,7 @@ module.exports = {
   ],
   transformAnswers(data) {
     if (typeof data['ingress-urls'] === 'string') {
-      data['ingress-urls'] = data['ingress-urls'].split(';');
+      data['ingress-urls'] = data['ingress-urls'].split(';').filter(Boolean);
     }
   }
 };
