@@ -1,0 +1,29 @@
+language: node_js
+node_js: '9'
+
+stages:
+  - name: test
+    if: tag IS blank
+  - name: deploy
+    if: branch = master AND type != pull_request
+
+notifications:
+  email: false
+
+before_install:
+  - npm i -g npm
+install: npm ci
+
+jobs:
+  include:
+    - stage: test
+      before_script:
+        - npm i -g greenkeeper-lockfile@1
+        - greenkeeper-lockfile-update
+      after_script:
+        - greenkeeper-lockfile-upload
+      after_success:
+        - npm i -g codecov
+        - codecov
+    - stage: deploy
+      script: npm run semantic-release
