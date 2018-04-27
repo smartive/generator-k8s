@@ -1,0 +1,41 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <%= data['deployment-name'] %>
+  namespace: <%= data['global-namespace'] %>
+  labels:<% if(data['global-app-name']) { %>
+    app: <%= data['global-app-name'] -%><% } %><% if(data['global-app-tier']) { %>
+    tier: <%= data['global-app-tier'] -%><% } %>
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      name: <%= data['deployment-name'] %><% if(data['global-app-name']) { %>
+      app: <%= data['global-app-name'] -%><% } %><% if(data['global-app-tier']) { %>
+      tier: <%= data['global-app-tier'] -%><% } %>
+  template:
+    metadata:
+      labels:
+        name: <%= data['deployment-name'] %><% if(data['global-app-name']) { %>
+        app: <%= data['global-app-name'] -%><% } %><% if(data['global-app-tier']) { %>
+        tier: <%= data['global-app-tier'] -%><% } %>
+    spec:
+      containers:
+      - name: <%= data['global-app-tier'] || data['global-app-name'] %>
+        image: <%= data['deployment-image'] %>
+        imagePullPolicy: IfNotPresent<% if(data['deployment-ports'].length > 0) { %>
+        ports:<% for(const map of data['deployment-ports']) { %>
+        - name: <%= map.name %>
+          containerPort: <%= map.port -%><% } %><% } %><% if(data['deployment-ports'].length > 0) { %>
+        livenessProbe:
+          tcpSocket:
+            port: <%= data['deployment-ports'][0].port %>
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        readinessProbe:
+          tcpSocket:
+            port: <%= data['deployment-ports'][0].port %>
+          initialDelaySeconds: 5
+          timeoutSeconds: 1<% } %>
