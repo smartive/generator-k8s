@@ -38,4 +38,11 @@ spec:
           tcpSocket:
             port: <%= data['deployment-ports'][0].port %>
           initialDelaySeconds: 5
-          timeoutSeconds: 1<% } %>
+          timeoutSeconds: 1<% } %><% if(data['pvc-name']) { %>
+        volumeMounts:
+        - mountPath: /MOUNT
+          name: <%= data['pvc-name'] %>
+      volumes:
+      - name: <%= data['pvc-name'] %>
+        persistentVolumeClaim:
+          claimName: <%= data['pvc-name'] %><% } %>
