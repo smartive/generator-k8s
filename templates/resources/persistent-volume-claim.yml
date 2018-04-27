@@ -1,0 +1,15 @@
+# Persistent Volume Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: <%= data['pvc-name'] %>
+  namespace: <%= data['global-namespace'] %>
+  labels:<% if(data['global-app-name']) { %>
+    app: <%= data['global-app-name'] -%><% } %><% if(data['global-app-tier']) { %>
+    tier: <%= data['global-app-tier'] -%><% } %>
+spec:
+  accessModes:<% for(const mode of data['pvc-access-modes']) { %>
+    - "<%= mode %>"<% } %>
+  resources:
+    requests:
+      storage: <%= data['pvc-size'] %>
