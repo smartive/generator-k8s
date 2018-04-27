@@ -12,7 +12,9 @@
   "keywords": [
     "yeoman-generator",
     "yeoman",
-    "typescript",
+    "kubernetes",
+    "k8s",
+    "ci",
     "bootstrap"
   ],
   "author": "Christoph Bühler <christoph@smartive.ch> (https://smartive.ch)",

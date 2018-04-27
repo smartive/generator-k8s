@@ -38,5 +38,5 @@ module.exports = {
     if (typeof data['ingress-urls'] === 'string') {
       data['ingress-urls'] = data['ingress-urls'].split(';').filter(Boolean);
     }
-  }
+  },
 };
