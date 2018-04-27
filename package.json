@@ -1,0 +1,30 @@
+{
+  "name": "generator-k8s",
+  "version": "0.0.0-development",
+  "description": "Yeoman generator for kubernetes resources",
+  "main": "generators/app/index.js",
+  "scripts": {
+    "clean": "del-cli ./coverage",
+    "test": "npm run clean && jest -c ./jest.json",
+    "test:watch": "npm run clean && jest -c ./jest.json --watch",
+    "semantic-release": "semantic-release"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "yeoman",
+    "typescript",
+    "bootstrap"
+  ],
+  "author": "Christoph Bühler <christoph@smartive.ch> (https://smartive.ch)",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.5.9",
+    "lodash": "^4.17.10",
+    "yeoman-generator": "^2.0.4"
+  },
+  "devDependencies": {
+    "del-cli": "^1.1.0",
+    "jest": "^22.4.3",
+    "yeoman-test": "^1.7.0"
+  }
+}

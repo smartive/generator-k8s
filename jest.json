@@ -1,0 +1,13 @@
+{
+  "collectCoverage": true,
+  "testMatch": [
+    "**/test/**/*.spec.js"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "json"
+  ]
+}
