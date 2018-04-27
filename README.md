@@ -62,7 +62,7 @@ Command: `yo k8s:persistent-volume-claim`
 This generates a `PersistentVolumeClaim` for k8s. You need to enter access modes and a size for the claim.
 
 #### Secret
-Command: `yo k8s:persistent-volume-claim`
+Command: `yo k8s:secret`
 
 This generates a `Secret` for k8s. During the questions, you can enter secret values
 with your configured `$EDITOR` if you wish to do so.
