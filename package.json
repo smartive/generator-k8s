@@ -40,6 +40,6 @@
     "del-cli": "^1.1.0",
     "jest": "^22.4.3",
     "semantic-release": "^15.1.7",
-    "yeoman-test": "^1.7.0"
+    "yeoman-test": "^2.0.0"
   }
 }
